@@ -1,0 +1,25 @@
+package main
+
+import "dbtest/databasePerformance"
+
+func main() {
+	databasePerformance.DP_TestPostgresql("Your Connect String", "ca.crt")
+}
+
+
+supabase:
+database connect successful
+PostgreSQL 15.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 13.2.0, 64-bit
+test start:1729431292376609
+test   end:1729431316946343
+test   use:24569734  (24 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:2365286
+seconds:2
+test writetimes:500
+=====update data test: 
+test   use:2894982
+seconds:2
+test writetimes:500

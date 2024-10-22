@@ -19,11 +19,12 @@ func NewPostgressql(constr string) *CPostgresql {
 
 func (pInst *CPostgresql) Connect(certFilePath string) error {
 	conn, _ := url.Parse(pInst.connectStr)
-	strSSL := "sslmode=disable"
-	if certFilePath != "" {
-		strSSL = "sslmode=verify-full&sslrootcert=" + certFilePath
-	}
-	conn.RawQuery = strSSL
+	//strSSL := "sslmode=disable"
+	//strSSL := "sslmode=require"
+	//if certFilePath != "" {
+	//	strSSL = "sslmode=verify-full&sslrootcert=" + certFilePath
+	//}
+	conn.RawQuery = certFilePath
 
 	db, err := sql.Open("postgres", conn.String())
 	if err != nil {

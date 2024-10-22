@@ -14,7 +14,7 @@ type iTestDatabase interface {
 	Query(sql string) (*sql.Rows, error)
 }
 
-const GC_TestTableName = "testtableperformance1" //"testtableperformance"
+const GC_TestTableName = "testtableperformance" //"testtableperformance"
 const GC_TestRecordCount = 10000
 
 func testWorker(dbInst iTestDatabase) error {

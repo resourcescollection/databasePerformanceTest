@@ -3,6 +3,7 @@ package main
 import "dbtest/databasePerformance"
 
 func main() {
+	// params 2: "sslmode=disable", "sslmode=require", "sslmode=verify-full&sslrootcert=ca.crt"
 	databasePerformance.DP_TestPostgresql("Your Connect String", "ca.crt")
 }
 
@@ -23,3 +24,89 @@ test writetimes:500
 test   use:2894982
 seconds:2
 test writetimes:500
+
+
+gigalixir:  // 10000 rows limits;
+PostgreSQL 12.20 (Ubuntu 12.20-0ubuntu0.20.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0, 64-bit
+test start:1729485631498774
+test   end:1729485735876442
+test   use:104377668  (104 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:103320214
+seconds:103
+test writetimes:500
+=====update data test: 
+test   use:104330629
+seconds:104
+test writetimes:500
+
+You're receiving this email because your Gigalixir database, has exceeded 90% of the allowed row count. You currently have 10000 rows. Once you exceed the 10,000 row limit, the database will be limited to read-only mode. If you need more rows, please migrate your database to the standard tier.
+
+
+
+render:
+PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+test start:1729486998605903
+test   end:1729487003601001
+test   use:4995098  (4 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1748510
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:2293672
+seconds:2
+test writetimes:500
+
+koyeb:
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+test start:1729487103289089
+test   end:1729487105608971
+test   use:2319882  (2 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1359693
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:1660629
+seconds:1
+test writetimes:500
+
+NHOST:
+PostgreSQL 14.13 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 13.3.0, 64-bit
+test start:1729600296683117
+test   end:1729600298409084
+test   use:1725967  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1436204
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:1653586
+seconds:1
+test writetimes:500
+
+NHOST2:
+PostgreSQL 14.13 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 13.3.0, 64-bit
+test start:1729600467321570
+test   end:1729600468916719
+test   use:1595149  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1205043
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:1425241
+seconds:1
+test writetimes:500
+disk space: 1.42 MB / 2.97 MB ?? 8.2 MB ??

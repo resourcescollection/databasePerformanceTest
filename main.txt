@@ -110,3 +110,22 @@ test   use:1425241
 seconds:1
 test writetimes:500
 disk space: 1.42 MB / 2.97 MB ?? 8.2 MB ??
+
+
+vercel: neon; singapore;
+limits: 256 MB,  60 hrs per month; 
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+test start:1729661799791994
+test   end:1729661801660481
+test   use:1868487  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:991853
+seconds:0
+test writetimes:500
+=====update data test: 
+test   use:1322971
+seconds:1
+test writetimes:500
+// storage unknow now;

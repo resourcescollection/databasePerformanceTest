@@ -128,4 +128,52 @@ test writetimes:500
 test   use:1322971
 seconds:1
 test writetimes:500
-// storage unknow now;
+// 32 MB ??
+
+alwaysdata: perf@skymail;  100 MB;
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+test start:1729664420707113
+test   end:1729664494123040
+test   use:73415927  (73 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:73049676
+seconds:73
+test writetimes:500
+=====update data test: 
+test   use:73224861
+seconds:73
+test writetimes:500
+// storage 8.8 MB
+
+
+
+gigalixir.com
+
+create db connecting:  4
+[0] test start:1730956388264265
+test   end:1730956398041582
+test   use:9777317  (9 seconds)
+test writetimes:46
+[1] test start:1730956388264179
+test   end:1730956398042954
+test   use:9778775  (9 seconds)
+test writetimes:46
+[3] test start:1730956388264174
+test   end:1730956398047673
+test   use:9783499  (9 seconds)
+test writetimes:46
+[2] test start:1730956388264265
+test   end:1730956398050296
+test   use:9786031  (9 seconds)
+test writetimes:46
+inserted datacount correct:  454  index:  0
+inserted datacount correct:  454  index:  1
+inserted datacount correct:  454  index:  3
+inserted datacount correct:  454  index:  2
+
+[0] test   use:9777317  (9 seconds)
+[1] test   use:9778775  (9 seconds)
+[2] test   use:9786031  (9 seconds)
+[3] test   use:9783499  (9 seconds)

@@ -46,20 +46,20 @@ func (pInst *CPostgresql) Query(sql string) (*sql.Rows, error) {
 	return pInst.database.Query(sql)
 }
 
-func (pInst *CPostgresql) GetDatabaseVersion() string {
+func (pInst *CPostgresql) GetDatabaseVersion() (string, error) {
 	rows, err := pInst.database.Query("SELECT version()")
 	if err != nil {
-		return "query error: " + err.Error()
+		return "query error: " + err.Error(), err
 	}
 
 	var result string
 	for rows.Next() {
 		err = rows.Scan(&result)
 		if err != nil {
-			return err.Error()
+			return err.Error(), err
 		}
 	}
-	return result
+	return result, nil
 }
 
 func (pInst *CPostgresql) CheckTableExists(tableName string) bool {

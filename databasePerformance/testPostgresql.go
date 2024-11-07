@@ -19,6 +19,10 @@ func getTestPostgresql() *cTestPostgresql {
 	return g_TestPostgresql
 }
 
+func newTestProstgresql() *cTestPostgresql {
+	return &cTestPostgresql{connectStr: ""}
+}
+
 func (pInst *cTestPostgresql) Initialize(connectstr, certFilePath string) error {
 	if !strings.HasPrefix(strings.ToLower(connectstr), "postgresql://") {
 		return errors.New("connection string type error")
@@ -31,10 +35,16 @@ func (pInst *cTestPostgresql) Initialize(connectstr, certFilePath string) error 
 		fmt.Println("database connect successful")
 	}
 
-	strVersion := pInst.dbInst.GetDatabaseVersion()
+	strVersion, err := pInst.dbInst.GetDatabaseVersion()
+	if err != nil {
+		return err
+	}
 	fmt.Println(strVersion)
 
 	return nil
+}
+func (pInst *cTestPostgresql) Close() {
+	pInst.dbInst.Close()
 }
 func (pInst *cTestPostgresql) DropTable(tableName string) error {
 	return pInst.dbInst.DropTableIfExists(tableName)

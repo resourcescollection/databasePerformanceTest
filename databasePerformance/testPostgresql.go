@@ -1,11 +1,12 @@
 package databasePerformance
 
 import (
-	"database/sql"
 	"dbtest/databaseSDK"
 	"errors"
 	"fmt"
 	"strings"
+
+	"github.com/jackc/pgx/v5"
 )
 
 type cTestPostgresql struct {
@@ -59,7 +60,7 @@ func (pInst *cTestPostgresql) ExecSql(sql string) error {
 	_, err := pInst.dbInst.ExecSql(sql)
 	return err
 }
-func (pInst *cTestPostgresql) Query(sql string) (*sql.Rows, error) {
+func (pInst *cTestPostgresql) Query(sql string) (pgx.Rows, error) {
 	return pInst.dbInst.Query(sql)
 }
 

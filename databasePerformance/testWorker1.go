@@ -1,17 +1,18 @@
 package databasePerformance
 
 import (
-	"database/sql"
 	"fmt"
 	"strconv"
 	"time"
+
+	"github.com/jackc/pgx/v5"
 )
 
 type iTestDatabase interface {
 	DropTable(string) error
 	CreateTestTable(string) error
 	ExecSql(string) error
-	Query(sql string) (*sql.Rows, error)
+	Query(sql string) (pgx.Rows, error)
 }
 
 const GC_TestTableName = "testtableperformance" //"testtableperformance"

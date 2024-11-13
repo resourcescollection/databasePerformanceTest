@@ -64,7 +64,7 @@ func (pInst *cTestPostgresql) Query(sql string) (*sql.Rows, error) {
 }
 
 const C_TestCreateTable = ` CREATE TABLE IF NOT EXISTS %s(
-			id                    BigInt         NOT NULL PRIMARY KEY,
+			id                    BIGSERIAL         NOT NULL PRIMARY KEY,
 			key varchar(128),
 			valuestr TEXT,
 			valueint BigInt,

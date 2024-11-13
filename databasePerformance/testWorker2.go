@@ -9,9 +9,10 @@ import (
 type cTestWorker2 struct {
 	dbList   []*cTestPostgresql
 	timeList [c_threadCount]int64
+	//logList  [c_threadCount]string
 }
 
-const c_threadCount = 20
+const c_threadCount = 4
 const c_testRecordCount2 = GC_TestRecordCount / (c_threadCount + 2)
 
 func newTestWorker2() *cTestWorker2 {
@@ -33,6 +34,7 @@ func (pInst *cTestWorker2) start(connectstr, certFilePath string) error {
 		pInst.timeList[iLoop] = 0
 		iDBCount++
 		pInst.dbList = append(pInst.dbList, dbInst)
+		time.Sleep(30 * time.Millisecond)
 	}
 	if iDBCount < 1 {
 		fmt.Println("database connect error:", lastError)
@@ -40,27 +42,19 @@ func (pInst *cTestWorker2) start(connectstr, certFilePath string) error {
 	}
 	fmt.Println("create db connecting: ", len(pInst.dbList))
 
-	err := pInst.dbList[0].DropTable(GC_TestTableName)
-	if err != nil {
-		fmt.Print("drop table error: ", err)
-		return err
-	}
-
-	err = pInst.dbList[0].CreateTestTable(GC_TestTableName)
-	if err != nil {
-		fmt.Print("create table error: ", err)
-		return err
-	}
-
 	for iLoop := 0; iLoop < iDBCount; iLoop++ {
+		//pInst.logList[iLoop] = ""
 		go pInst.testInsertPerformance(iLoop, pInst.dbList[iLoop])
+		time.Sleep(30 * time.Millisecond)
 	}
 
 	for iLoop := 0; iLoop < 100; iLoop++ {
 		time.Sleep(2 * time.Second)
 		var bFinished bool = true
-		for iLoop := 0; iLoop < iDBCount; iLoop++ {
-			if pInst.timeList[iLoop] < 1 {
+		var indexNotYet int = -1
+		for iLoop1 := 0; iLoop1 < iDBCount; iLoop1++ {
+			if pInst.timeList[iLoop1] < 1 {
+				indexNotYet = iLoop1
 				bFinished = false
 				break
 			}
@@ -68,6 +62,7 @@ func (pInst *cTestWorker2) start(connectstr, certFilePath string) error {
 		if bFinished {
 			break
 		}
+		fmt.Println("thread still working: ", indexNotYet) //, pInst.logList[indexNotYet])
 	}
 
 	textReport := ""
@@ -82,16 +77,36 @@ func (pInst *cTestWorker2) start(connectstr, certFilePath string) error {
 }
 
 func (pInst *cTestWorker2) testInsertPerformance(index int, dbInst iTestDatabase) {
-	var idbase = GC_TestRecordCount * index
+	//pInst.logList[index] += fmt.Sprintf("thread start %d\n", index)
+	var tableName string = GC_TestTableName + strconv.Itoa(index+1)
+	err := pInst.dbList[index].DropTable(tableName)
+	if err != nil {
+		fmt.Print("drop table error: ", err, "index:", index)
+		//pInst.logList[index] += fmt.Sprintf("tdrop table error: %d\n", index)
+		return
+	}
+	//pInst.logList[index] += fmt.Sprintf("table droped %d\n", index)
+
+	err = pInst.dbList[index].CreateTestTable(tableName)
+	if err != nil {
+		fmt.Print("create table error: ", err, "index:", index)
+		//pInst.logList[index] += fmt.Sprintf("create table error: %d\n", index)
+		return
+	}
+	//pInst.logList[index] += fmt.Sprintf("table created %d\n", index)
+
+	var idbase = 0 //GC_TestRecordCount * index
 	timeBegin := time.Now().UnixMicro()
 	strSql := ""
 	writeTimes := 0
 	for iLoop := 1; iLoop <= c_testRecordCount2; iLoop++ {
 		iID := idbase + iLoop
 		strSql += fmt.Sprintf("insert into %s(id, key, valuestr, valueint, valuefloat) values (%d,'key%d', 'test insert performance %d', %d, %f);\n",
-			GC_TestTableName, iID, iID, iID, iID, float64(iID)*0.11)
+			tableName, iID, iID, iID, iID, float64(iID)*0.11)
 		if iLoop%10 == 0 {
+			//pInst.logList[index] += fmt.Sprintf("start insert %d\n", index)
 			err := dbInst.ExecSql(strSql)
+			//pInst.logList[index] += fmt.Sprintf("insert done %d\n", index)
 			if err != nil {
 				fmt.Print("insert data error: ", err, " id:", iID)
 				break
@@ -120,16 +135,18 @@ func (pInst *cTestWorker2) testInsertPerformance(index int, dbInst iTestDatabase
 	pInst.timeList[index] = timeUse
 
 	fmt.Println(textReport)
-	err := pInst.checkRecordCount(index, dbInst)
+	err = pInst.checkRecordCount(index, dbInst)
 	if err != nil {
 		fmt.Println("check insert count error: ", err)
 	}
+	pInst.dbList[index].Close()
 }
 
 func (pInst *cTestWorker2) checkRecordCount(index int, dbInst iTestDatabase) error {
-	var idbase = GC_TestRecordCount * index
-	var idMax = GC_TestRecordCount * (index + 1)
-	sql := "select count(*) as rCount from " + GC_TestTableName + " where id >=" + strconv.Itoa(idbase) + " and id<" + strconv.Itoa(idMax)
+	var tableName string = GC_TestTableName + strconv.Itoa(index+1)
+	//var idbase = GC_TestRecordCount * index
+	//var idMax = GC_TestRecordCount * (index + 1)
+	sql := "select count(*) as rCount from " + tableName + ";"
 	rows, err := dbInst.Query(sql)
 	if err != nil {
 		return err

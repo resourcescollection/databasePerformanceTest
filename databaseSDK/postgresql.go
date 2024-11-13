@@ -31,6 +31,7 @@ func (pInst *CPostgresql) Connect(certFilePath string) error {
 		return err
 	}
 
+
 	pInst.database = db
 
 	return nil
@@ -51,6 +52,7 @@ func (pInst *CPostgresql) GetDatabaseVersion() (string, error) {
 	if err != nil {
 		return "query error: " + err.Error(), err
 	}
+	defer rows.Close()
 
 	var result string
 	for rows.Next() {

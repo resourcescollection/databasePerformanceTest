@@ -12,7 +12,7 @@ type cTestWorker2 struct {
 	//logList  [c_threadCount]string
 }
 
-const c_threadCount = 4
+const c_threadCount = 20
 const c_testRecordCount2 = GC_TestRecordCount / (c_threadCount + 2)
 
 func newTestWorker2() *cTestWorker2 {
@@ -53,7 +53,7 @@ func (pInst *cTestWorker2) start(connectstr, certFilePath string) error {
 		var bFinished bool = true
 		var indexNotYet int = -1
 		for iLoop1 := 0; iLoop1 < iDBCount; iLoop1++ {
-			if pInst.timeList[iLoop1] < 1 {
+			if pInst.timeList[iLoop1] == 0 {
 				indexNotYet = iLoop1
 				bFinished = false
 				break
@@ -81,6 +81,7 @@ func (pInst *cTestWorker2) testInsertPerformance(index int, dbInst iTestDatabase
 	var tableName string = GC_TestTableName + strconv.Itoa(index+1)
 	err := pInst.dbList[index].DropTable(tableName)
 	if err != nil {
+		pInst.timeList[index] = -1
 		fmt.Print("drop table error: ", err, "index:", index)
 		//pInst.logList[index] += fmt.Sprintf("tdrop table error: %d\n", index)
 		return
@@ -89,6 +90,7 @@ func (pInst *cTestWorker2) testInsertPerformance(index int, dbInst iTestDatabase
 
 	err = pInst.dbList[index].CreateTestTable(tableName)
 	if err != nil {
+		pInst.timeList[index] = -1
 		fmt.Print("create table error: ", err, "index:", index)
 		//pInst.logList[index] += fmt.Sprintf("create table error: %d\n", index)
 		return

@@ -177,3 +177,38 @@ inserted datacount correct:  454  index:  2
 [1] test   use:9778775  (9 seconds)
 [2] test   use:9786031  (9 seconds)
 [3] test   use:9783499  (9 seconds)
+
+
+
+tembo.io
+
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+test start:1731532438064141
+test   end:1731532439896824
+test   use:1832683  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1033709
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:1593489
+seconds:1
+test writetimes:500
+
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+test start:1731532739474572
+test   end:1731532741293325
+test   use:1818753  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1041405
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:1597702
+seconds:1
+test writetimes:500
+

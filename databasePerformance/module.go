@@ -1,20 +1,22 @@
 package databasePerformance
 
-func DP_TestPostgresql(connectstr, certFilePath string) error {
-	// dbInst := getTestPostgresql()
-	// err := dbInst.Initialize(connectstr, certFilePath)
-	// if err != nil {
-	// 	fmt.Println("postgresql test error: ", err)
-	// 	return err
-	// }
+import "fmt"
 
-	// testWorker1(dbInst)
-	// dbInst.Close()
+func DP_TestPostgresql(connectstr, certFilePath string) error {
+	dbInst := getTestPostgresql()
+	err := dbInst.Initialize(connectstr, certFilePath)
+	if err != nil {
+		fmt.Println("postgresql test error: ", err)
+		return err
+	}
+
+	testWorker1(dbInst)
+	dbInst.Close()
 
 	// work1 end;
 	// work2 start;
-	work2 := newTestWorker2()
-	err := work2.start(connectstr, certFilePath)
+	// work2 := newTestWorker2()
+	// err := work2.start(connectstr, certFilePath)
 
 	return err
 }

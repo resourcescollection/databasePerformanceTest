@@ -12,7 +12,7 @@ type cTestWorker2 struct {
 	//logList  [c_threadCount]string
 }
 
-const c_threadCount = 20
+const c_threadCount = 3
 const c_testRecordCount2 = GC_TestRecordCount / (c_threadCount + 2)
 
 func newTestWorker2() *cTestWorker2 {

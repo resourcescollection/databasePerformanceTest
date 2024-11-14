@@ -212,3 +212,18 @@ test   use:1597702
 seconds:1
 test writetimes:500
 
+PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+test start:1731554861182413
+test   end:1731554863361577
+test   use:2179164  (2 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:1957453
+seconds:1
+test writetimes:500
+=====update data test: 
+test   use:3560936
+seconds:3
+test writetimes:500
+

@@ -6,8 +6,8 @@ import "dbtest/databasePerformance"
 
 // use maybe
 //"postgresql://postgres:JPB87TALnMwYa8Mo@irritably-faultless-stonechat.data-1.use1.tembo.io:5432/postgres", "ca.crt"
-// next singapore
-// postgresql://postgres:sGD3jTW6UzrnRY9D@conceitedly-curious-anhinga.data-1.apse1.tembo.io:5432/postgres
+// europe: perf@skymail.de;
+// postgresql://postgres:jQ6YOWxBjaltS2Gy@factually-mature-sponge.data-1.euc1.tembo.io:5432/postgres
 
 // postgresql://872701ec-9694-4792-afe1-7a7b2d769e51-user:pw-c50e83a4-5e5a-431a-a05c-13699c338916@postgres-free-tier-v2020.gigalixir.com:5432/872701ec-9694-4792-afe1-7a7b2d769e51
 // warning not suit for product. it's hard convert data from free to product;
@@ -15,6 +15,7 @@ import "dbtest/databasePerformance"
 // postgresql://mydata_9wqm_user:KVD6zySp9Ux4ou2prT2BNlRo1FNunNse@dpg-csatg1ggph6c73a63s3g-a.singapore-postgres.render.com/mydata_9wqm
 // delete in one month
 
+// perf@skymail.de;   // for performance test only;
 // postgres://koyeb-adm:SxIFv90GWhro@ep-lively-mode-a1ug026j.ap-southeast-1.pg.koyeb.app/koyebdb
 
 // postgresql://perfs:J78nwp2dVN+tOS73__@sgp.domcloud.co/perfs_db
@@ -33,6 +34,6 @@ import "dbtest/databasePerformance"
 
 // "sslmode=disable"
 func main() {
-	databasePerformance.DP_TestPostgresql("postgresql://postgres:sGD3jTW6UzrnRY9D@conceitedly-curious-anhinga.data-1.apse1.tembo.io:5432/postgres",
+	databasePerformance.DP_TestPostgresql("postgresql://koyeb-adm:SxIFv90GWhro@ep-lively-mode-a1ug026j.ap-southeast-1.pg.koyeb.app/koyebdb",
 		"")
 }

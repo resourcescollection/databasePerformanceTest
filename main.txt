@@ -46,21 +46,21 @@ You're receiving this email because your Gigalixir database, has exceeded 90% of
 
 
 
-render:
-PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
-test start:1729486998605903
-test   end:1729487003601001
-test   use:4995098  (4 seconds)
+PostgreSQL 16.5 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+test start:1732244662020608
+test   end:1732244664220704
+test   use:2200096  (2 seconds)
 test writetimes:500
 inserted datacount correct:  10000
 =====repeat data test: 
-test   use:1748510
+test   use:1221739
 seconds:1
 test writetimes:500
 =====update data test: 
-test   use:2293672
-seconds:2
+test   use:1612299
+seconds:1
 test writetimes:500
+
 
 koyeb:
 PostgreSQL 16.4 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit

@@ -32,8 +32,26 @@ import "dbtest/databasePerformance"
 // alwaysdata.com: perf@skymail.de;
 // postgresql://perf_u1:GearTest@@123123@postgresql-perf.alwaysdata.net/perf_d1
 
+// aiven: browser@mail.io
+// postgres://avnadmin:AVNS_5safReMZqsicrcDCtLC@data99-data99.i.aivencloud.com:17718/defaultdb?sslmode=require
+
+// cockroachlabs: github:   mail: autumnwindxiaose@eclipso.eu    work 111
+// postgresql://dbu1:EmcDAC9kYitvTINy9qQosQ@needy-beaski-3811.jxf.gcp-us-east1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full
+
+// nhost
+// postgresql://postgres:xxE2HF1yQNp9jsJt@njjgiubrvqsxmcndhdlx.db.ap-southeast-1.nhost.run:5432/njjgiubrvqsxmcndhdlx
+
+// supabase: fhyf@mailum.com
+// postgresql://postgres.qmkfitxtdsuhhxomsvnt:PkrRNYRO34zzTp9h@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres
+
+// neon: sab@mailum
+// postgresql://sab_owner:AKO9GytfVkR5@ep-sweet-bonus-a1dcd3xg.ap-southeast-1.aws.neon.tech/sab?sslmode=require
+
+// aiven: accwcc@proton.me
+// postgresql://avnadmin:AVNS_0n3WQLMFptVVEa3GiQ4@test1-accwcc.f.aivencloud.com:19418/defaultdb?sslmode=require
+
 // "sslmode=disable"
 func main() {
-	databasePerformance.DP_TestPostgresql("postgresql://koyeb-adm:SxIFv90GWhro@ep-lively-mode-a1ug026j.ap-southeast-1.pg.koyeb.app/koyebdb",
+	databasePerformance.DP_TestPostgresql("postgresql://avnadmin:AVNS_0n3WQLMFptVVEa3GiQ4@test1-accwcc.f.aivencloud.com:19418/defaultdb?sslmode=require",
 		"")
 }

@@ -8,6 +8,39 @@ func main() {
 }
 
 
+
+
+
+
+Aiven:  2025.0204
+PostgreSQL 16.6 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 14.2.1 20240912 (Red Hat 14.2.1-3), 64-bit
+test start:1738672936950003
+test   end:1738672938173085
+test   use:1223082  (1 seconds)
+test writetimes:500
+inserted datacount correct:  10000
+=====repeat data test: 
+test   use:949512
+seconds:0
+test writetimes:500
+=====update data test: 
+test   use:962219
+seconds:0
+test writetimes:500
+
+[0] test   use:267590  (0 seconds)
+[1] test   use:313058  (0 seconds)
+[2] test   use:358448  (0 seconds)
+[3] test   use:351935  (0 seconds)
+[4] test   use:334564  (0 seconds)
+[5] test   use:333077  (0 seconds)
+[6] test   use:354693  (0 seconds)
+[7] test   use:330537  (0 seconds)
+[8] test   use:272796  (0 seconds)
+[9] test   use:266540  (0 seconds)
+
+
+
 supabase:
 database connect successful
 PostgreSQL 15.6 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 13.2.0, 64-bit
